@@ -67,4 +67,10 @@ public class HibernateUtil {
 
         return result;
     }
+
+    public static SessionFactory getSessionFactory() {
+        Configuration config=new Configuration();
+        config.configure();
+        return config.buildSessionFactory();
+    }
 }

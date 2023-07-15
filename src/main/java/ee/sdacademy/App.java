@@ -1,6 +1,7 @@
 package ee.sdacademy;
 
 import ee.sdacademy.configuration.HibernateUtil;
+import ee.sdacademy.models.ShoppingList;
 
 import java.security.MessageDigest;
 
@@ -24,5 +25,4 @@ public class App {
             throw new RuntimeException("Encryption failed");
         }
     }
-
 }
