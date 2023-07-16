@@ -81,10 +81,4 @@ public class HibernateUtil {
             transaction.rollback();
         }
     }
-
-    public static SessionFactory getSessionFactory() {
-        Configuration config=new Configuration();
-        config.configure();
-        return config.buildSessionFactory();
-    }
 }
