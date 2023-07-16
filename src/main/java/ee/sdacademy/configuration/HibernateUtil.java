@@ -1,7 +1,7 @@
 package ee.sdacademy.configuration;
 
 import ee.sdacademy.models.Items;
-import ee.sdacademy.models.ShoppingList;
+import ee.sdacademy.models.ShoppingLists;
 import ee.sdacademy.models.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
 import java.util.Properties;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class HibernateUtil {
@@ -32,7 +33,7 @@ public class HibernateUtil {
         configuration.setProperties(settings);
 
         configuration.addAnnotatedClass(Users.class);
-        configuration.addAnnotatedClass(ShoppingList.class);
+        configuration.addAnnotatedClass(ShoppingLists.class);
         configuration.addAnnotatedClass(Items.class);
 
         sessionFactory = configuration.buildSessionFactory(
@@ -66,6 +67,19 @@ public class HibernateUtil {
         }
 
         return result;
+    }
+
+    public static void queryWithTransactionNoResult(Consumer<EntityManager> queryExecutor) {
+        EntityManager em = getEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+        try {
+            queryExecutor.accept(em);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        }
     }
 
     public static SessionFactory getSessionFactory() {
