@@ -1,21 +1,37 @@
 package ee.sdacademy.service;
 
 import ee.sdacademy.models.Users;
+import ee.sdacademy.repository.UsersRepository;
 
 import java.security.MessageDigest;
+import java.util.List;
 
 public class UserService {
-    private final UserRepository userRepository;
+    private final UsersRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UsersRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public Users save(Users user) {
+    public void save(Users user) {
         user.setPassword(encrypt(user.getPassword()));
-        Users savedUser = userRepository.save(user);
-        savedUser.setPassword(null);
-        return savedUser;
+        userRepository.createUser(user);
+    }
+
+    public List<Users> getAll() {
+        return userRepository.getAllUsers();
+    }
+
+    public void deleteUser(Users users) {
+        userRepository.deleteUser(users);
+    }
+
+    public Users findUserById(Long id) {
+        return userRepository.findUserById(id);
+    }
+
+    public Users updateUser(Users users) {
+        return userRepository.updateUser(users);
     }
 
     public static String encrypt(String str) {
