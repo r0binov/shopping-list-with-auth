@@ -2,6 +2,9 @@ package ee.sdacademy.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "shopping_lists")
 public class ShoppingLists extends AbstractEntity {
@@ -12,6 +15,9 @@ public class ShoppingLists extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
+
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "shoppingList", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Items> items = new ArrayList<>();
 
     public ShoppingLists() {
 

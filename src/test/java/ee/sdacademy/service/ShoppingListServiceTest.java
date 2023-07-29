@@ -1,8 +1,8 @@
-package ee.sdacademy.repository;
+package ee.sdacademy.service;
 
 import ee.sdacademy.models.ShoppingLists;
 import ee.sdacademy.models.Users;
-import ee.sdacademy.service.ShoppingListService;
+import ee.sdacademy.repository.ShoppingListsRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,13 +11,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-
 @ExtendWith(MockitoExtension.class)
-public class ShoppingListsRepositoryTest {
-
+class ShoppingListServiceTest {
     @Mock
     private ShoppingListsRepository shoppingListsRepository;
 
