@@ -1,10 +1,6 @@
 package ee.sdacademy.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 @MappedSuperclass
 public class AbstractEntity {
@@ -20,8 +16,9 @@ public class AbstractEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public Long setId(Long id) {
         this.id = id;
+        return id;
     }
 
     @Override

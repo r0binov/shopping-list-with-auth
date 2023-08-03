@@ -15,13 +15,13 @@ public class Items extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "list_id", nullable = false)
-    private ShoppingList shoppingList;
+    private ShoppingLists shoppingList;
 
     public Items() {
 
     }
 
-    public Items(String name, BigDecimal quantity, ShoppingList shoppingList) {
+    public Items(String name, BigDecimal quantity, ShoppingLists shoppingList) {
         this.name = name;
         this.quantity = quantity;
         this.shoppingList = shoppingList;
@@ -43,11 +43,11 @@ public class Items extends AbstractEntity {
         this.quantity = quantity;
     }
 
-    public ShoppingList getShoppingList() {
+    public ShoppingLists getShoppingList() {
         return shoppingList;
     }
 
-    public void setShoppingList(ShoppingList shoppingList) {
+    public void setShoppingList(ShoppingLists shoppingList) {
         this.shoppingList = shoppingList;
     }
 
